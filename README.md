@@ -54,3 +54,21 @@ Just for fun
 Use this to show all commits with errors
 
         phpcs --report=gitblame /path/to/code
+        
+To register PHP Code Sniffer in IntelliJ IDEA
+---------------------------------------------
+
+Open the Settings dialog box, and click Code Sniffer under the PHP node.
+In the PHP Code Sniffer path text box, specify the location of the Code Sniffer executable phpcs.bat. Type the path manually or click the Browse button browseButton.png and select the path in the dialog box, that opens.
+To check that the specified path to phpcs.bat ensures interaction between IntelliJ IDEA and Code Sniffer, that is, the tool can be launched from IntelliJ IDEA and IntelliJ IDEA will receive problem reports from it, click the Validate button. This validation is equal to running the phpcs --version command. If validation passes successfully, IntelliJ IDEA displays the information on the detected Code Sniffer version.
+
+To configure PHP Code Sniffer as a IntelliJ IDEA inspection
+-----------------------------------------------------------
+
+Open the Settings dialog box, and click Inspections.
+On the Inspections page that opens, select the PHP Code Sniffer validation check box under the PHP node.
+On the right-hand pane of the page, configure the PHP Code Sniffer tool using the controls in the Options area:
+From the Severity drop-down list, choose the severity degree for the Code Sniffer inspection. The selected value determines how serious the detected discrepancies will be treated by IntelliJ IDEA and presented in the inspection results.
+In the Coding standard drop-down list, appoint the coding style to check your code against. The list contains all the coding standards installed inside the main PHP_CodeSniffer directory structure.
+Use one of the predefined coding standards or choose Custom to appoint your own standard.
+Optionally, select the Ignore warnings check box to have only errors reported and suppress reporting warnings. This option is equal to the -n command line argument.
