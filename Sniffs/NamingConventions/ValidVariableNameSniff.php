@@ -151,24 +151,25 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
         $sFirstLetter = substr($varName, 0, 1);
         $sSecondLetter = substr($varName, 1, 1);
 
-        if(!in_array($sFirstLetter, $this->_aType) && $varName != 'this') {
-            $error = 'The variable "%s" does not contain a type variable in first position';
-            $data  = array($originalVarName);
-            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
-        }
+        if(!in_array($varName, array('this', 'self'))) {
+            if (!in_array($sFirstLetter, $this->_aType)) {
+                $error = 'The variable "%s" does not contain a type variable in first position';
+                $data = array($originalVarName);
+                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+            }
 
-        if(!ctype_lower($sFirstLetter) && $varName != 'this') {
-            $error = 'The variable "%s" does not contain an lower case in the fisrt position';
-            $data  = array($originalVarName);
-            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
-        }
+            if (!ctype_lower($sFirstLetter)) {
+                $error = 'The variable "%s" does not contain an lower case in the first position';
+                $data = array($originalVarName);
+                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+            }
 
-        if(!ctype_upper($sSecondLetter) && $varName != 'this') {
-            $error = 'The variable "%s" does not contain an upper case in the second position';
-            $data  = array($originalVarName);
-            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+            if (!empty($sSecondLetter) && !ctype_upper($sSecondLetter)) {
+                $error = 'The variable "%s" does not contain an upper case in the second position';
+                $data = array($originalVarName);
+                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+            }
         }
-
 
     }//end processVariable()
 
