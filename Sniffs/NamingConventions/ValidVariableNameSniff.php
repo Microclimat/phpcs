@@ -44,6 +44,14 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                         T_COMMENT,
                        );
 
+    /**
+     * Type of variable
+     *
+     *
+     * @var array
+     */
+    private $_aType = array('i', 'f', 'a', 's', 'o', 'r', 'b', 'd');
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -139,6 +147,28 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
             $data    = array($originalVarName);
             $phpcsFile->addWarning($warning, $stackPtr, 'ContainsNumbers', $data);
         }
+
+        $sFirstLetter = substr($varName, 0, 1);
+        $sSecondLetter = substr($varName, 1, 1);
+
+        if(!in_array($sFirstLetter, $this->_aType) && $varName != 'this') {
+            $error = 'The variable "%s" does not contain a type variable in first position';
+            $data  = array($originalVarName);
+            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+        }
+
+        if(!ctype_lower($sFirstLetter) && $varName != 'this') {
+            $error = 'The variable "%s" does not contain an lower case in the fisrt position';
+            $data  = array($originalVarName);
+            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+        }
+
+        if(!ctype_upper($sSecondLetter) && $varName != 'this') {
+            $error = 'The variable "%s" does not contain an upper case in the second position';
+            $data  = array($originalVarName);
+            $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
+        }
+
 
     }//end processVariable()
 
