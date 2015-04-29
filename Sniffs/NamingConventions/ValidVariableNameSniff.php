@@ -50,7 +50,7 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      *
      * @var array
      */
-    private $_aType = array('i', 'f', 'a', 's', 'o', 'r', 'b', 'd');
+    private $_aType = array('i', 'f', 'a', 's', 'o', 'r', 'b', 'd', 'm');
 
 
     /**
