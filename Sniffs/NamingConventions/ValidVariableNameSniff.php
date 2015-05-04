@@ -80,6 +80,7 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                             'http_response_header',
                             'HTTP_RAW_POST_DATA',
                             'php_errormsg',
+                            'argv',
                            );
 
         // If it's a php reserved var, then its ok.
