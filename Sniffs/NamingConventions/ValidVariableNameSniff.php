@@ -68,20 +68,26 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
         $phpReservedVars = array(
-                            '_SERVER',
-                            '_GET',
-                            '_POST',
-                            '_REQUEST',
-                            '_SESSION',
-                            '_ENV',
-                            '_COOKIE',
-                            '_FILES',
-                            'GLOBALS',
-                            'http_response_header',
-                            'HTTP_RAW_POST_DATA',
-                            'php_errormsg',
-                            'argv',
-                           );
+            '_SERVER',
+            '_GET',
+            '_POST',
+            '_REQUEST',
+            '_SESSION',
+            '_ENV',
+            '_COOKIE',
+            '_FILES',
+            'GLOBALS',
+            'http_response_header',
+            'HTTP_RAW_POST_DATA',
+            'php_errormsg',
+            'argv',
+        );
+        $phpAcceptedVars = array(
+            'this',
+            'i',
+            'j',
+            'k',
+        );
 
         // If it's a php reserved var, then its ok.
         if (in_array($varName, $phpReservedVars) === true) {
@@ -152,7 +158,7 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
         $sFirstLetter = substr($varName, 0, 1);
         $sSecondLetter = substr($varName, 1, 1);
 
-        if(!in_array($varName, array('this', 'self'))) {
+        if(!in_array($varName, $phpAcceptedVars)) {
             if (!in_array($sFirstLetter, $this->_aType)) {
                 $error = 'The variable "%s" does not contain a type variable in first position';
                 $data = array($originalVarName);
