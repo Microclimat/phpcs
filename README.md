@@ -45,6 +45,15 @@ Launch an analyse
 Fixing Errors Automatically
 
         phpcbf /path/to/code
+        
+Ignoring 
+
+        <?php
+        some_code();
+        // @codingStandardsIgnoreStart
+        this_will_be_ignored();
+        // @codingStandardsIgnoreEnd
+        some_other_code();
 
 All documentation is [here](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
 
