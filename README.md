@@ -9,6 +9,7 @@ Installation
 1. Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 2. In command line, go inside the phpcs `Standards` directory
+> Under Linux Mint, the path is `/usr/share/php/PHP/CodeSniffer/Standards/`
 
 3. Checkout this repository
 
