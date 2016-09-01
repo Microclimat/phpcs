@@ -13,7 +13,7 @@ Installation
 
 3. Checkout this repository
 
-        git clone https://github.com/Microclimat/phpcs Happy
+        git clone git@github.com:Microclimat/phpcs.git Happy
 
 4. Check the installed coding standards for "Happy"
 
