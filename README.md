@@ -186,3 +186,33 @@ On win7 : Preference > Package Settings > Php Code Sniffer > Settings - User
 }
 ```
 and change PATH with your own values
+
+## Using phpcs with GrumPHP (inspection before commit)
+
+First of all, you'll need grumphp : https://github.com/phpro/grumphp
+Follow the instructions, and add a task of type phpcs into your grumphp.yml (edit it like in the below example).
+You should have this written in your file :
+```
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        phpcs:
+            standard: "vendor/happytech/phpcs/Happy"
+            show_warnings: true
+            tab_width: ~
+            whitelist_patterns: []
+            encoding: ~
+            ignore_patterns: []
+            sniffs: []
+            triggered_by: [php]
+```
+Go in your project's root folder, launch a terminal and type
+
+```
+composer require --dev happytech/phpcs
+```
+
+This will add the Happy convention and phpcs to your vendors and update your composer.json
+
+Next, try to commit !
