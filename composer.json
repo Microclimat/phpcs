@@ -1,0 +1,8 @@
+{
+  "name": "happytech/phpcs",
+  "description": "The Happy's PHP codesniffer convention",
+  "require": {
+    "php": "^5.3.3 || ^7.0",
+    "squizlabs/php_codesniffer": ">=2.7.1"
+  }
+}
