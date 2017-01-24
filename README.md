@@ -190,7 +190,9 @@ and change PATH with your own values
 ## Using phpcs with GrumPHP (inspection before commit)
 
 First of all, you'll need grumphp : https://github.com/phpro/grumphp
+
 Follow the instructions, and add a task of type phpcs into your grumphp.yml (edit it like in the below example).
+
 You should have this written in your file :
 ```
 parameters:
