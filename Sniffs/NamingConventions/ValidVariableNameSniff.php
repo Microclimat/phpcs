@@ -45,15 +45,6 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                        );
 
     /**
-     * Type of variable
-     *
-     *
-     * @var array
-     */
-    private $_aType = array('i', 'f', 'a', 's', 'o', 'r', 'b', 'd', 'm');
-
-
-    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
@@ -81,12 +72,6 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
             'HTTP_RAW_POST_DATA',
             'php_errormsg',
             'argv',
-        );
-        $phpAcceptedVars = array(
-            'this',
-            'i',
-            'j',
-            'k',
         );
 
         // If it's a php reserved var, then its ok.
@@ -155,29 +140,6 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
             $phpcsFile->addWarning($warning, $stackPtr, 'ContainsNumbers', $data);
         }
 
-        $sFirstLetter = substr($varName, 0, 1);
-        $sSecondLetter = substr($varName, 1, 1);
-
-        if(!in_array($varName, $phpAcceptedVars)) {
-            if (!in_array($sFirstLetter, $this->_aType)) {
-                $error = 'The variable "%s" does not contain a type variable in first position';
-                $data = array($originalVarName);
-                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
-            }
-
-            if (!ctype_lower($sFirstLetter)) {
-                $error = 'The variable "%s" does not contain an lower case in the first position';
-                $data = array($originalVarName);
-                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
-            }
-
-            if (!empty($sSecondLetter) && !ctype_upper($sSecondLetter)) {
-                $error = 'The variable "%s" does not contain an upper case in the second position';
-                $data = array($originalVarName);
-                $phpcsFile->addError($error, $stackPtr, 'NotCapital', $data);
-            }
-        }
-
     }//end processVariable()
 
 
@@ -220,7 +182,8 @@ class Happy_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
         if (PHP_CodeSniffer::isCamelCaps($varName, false, $public, false) === false) {
             $error = 'Member variable "%s" is not in valid camel caps format';
             $data  = array($varName);
-            $phpcsFile->addError($error, $stackPtr, 'MemberVarNotCamelCaps', $data);
+            // Set this as warning for Prestashop Entities
+            $phpcsFile->addWarning($error, $stackPtr, 'MemberVarNotCamelCaps', $data);
         } else if (preg_match('|\d|', $varName) === 1) {
             $warning = 'Member variable "%s" contains numbers but this is discouraged';
             $data    = array($varName);
